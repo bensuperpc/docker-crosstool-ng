@@ -21,10 +21,17 @@ git clone https://github.com/Bensuperpc/docker-crosstool-ng.git
 cd docker-crosstool-ng
 ```
 #### Usage
+Generate config file
 
 ```sh
--
+./crosstool-ng.sh ct-ng aarch64-rpi4-linux-gnu
 ```
+Build
+
+```sh
+./crosstool-ng.sh ct-ng build
+```
+
 #### Build
 ```sh
 make linux/amd64 or linux/arm/v7
