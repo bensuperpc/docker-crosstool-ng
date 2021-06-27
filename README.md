@@ -26,15 +26,20 @@ Generate config file
 ```sh
 ./crosstool-ng.sh ct-ng aarch64-rpi4-linux-gnu
 ```
-Build
+Or list samples
+```sh
+./crosstool-ng.sh ct-ng list-samples
+```
+
+And build
 
 ```sh
 ./crosstool-ng.sh ct-ng build
 ```
 
-#### Build
+#### Build docker image
 ```sh
-make linux/amd64 or linux/arm/v7
+make linux/amd64 or linux/arm64
 ```
 
 ### Todos
