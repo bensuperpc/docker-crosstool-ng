@@ -1,0 +1,36 @@
+name: docker-crosstool-ng
+
+on:
+  push:
+    branches:
+    - 'main'
+    - 'master'
+    - 'dev'
+    paths-ignore:
+    - '**/README.md'
+  pull_request:
+    branches:
+    - '*'
+  schedule:
+  - cron:  "0 7 * * 4"
+  workflow_dispatch:
+
+jobs:
+  image:
+    name: docker-crosstool-ng
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "📥 Checkout Code"
+        uses: actions/checkout@v2.3.4
+        with:
+          submodules: 'recursive'
+          fetch-depth: 0
+      - name: "🛠️ Docker QEMU"
+        run: make qemu
+      - name: "🛠️ Build and 📤 Upload to hub.docker.com"
+        run: |
+            docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+            make all
+      - name: "🧹 Clean"
+        run: make clean
+      
