@@ -79,4 +79,9 @@ LABEL org.label-schema.schema-version="1.0" \
 	  org.label-schema.vcs-ref=$VCS_REF \
 	  org.label-schema.docker.cmd="docker build -t bensuperpc/crosstool-ng -f Dockerfile ."
 
+ENV CT_ALLOW_BUILD_AS_ROOT_SURE=1
+ENV CT_PREFIX=/usr/src/myapp
+
+VOLUME [ "/usr/src/myapp" ]
+WORKDIR /usr/src/myapp
 CMD ["ct-ng"]

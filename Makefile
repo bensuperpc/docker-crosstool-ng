@@ -8,11 +8,11 @@
 #//////////////////////////////////////////////////////////////
 #//                                                          //
 #//  Script, 2021                                            //
-#//  Created: 02, June, 2021                                 //
-#//  Modified: 03, June, 2021                                //
+#//  Created: 27, June, 2021                                 //
+#//  Modified: 27, June, 2021                                //
 #//  file: -                                                 //
 #//  -                                                       //
-#//  Source: https://github.com/sjasmplus/sjasmplus                                               //
+#//  Source: https://github.com/crosstool-ng/crosstool-ng                                               //
 #//          https://www.docker.com/blog/getting-started-with-docker-for-arm-on-linux/
 #//          https://schinckel.net/2021/02/12/docker-%2B-makefile/
 #//          https://www.padok.fr/en/blog/multi-architectures-docker-iot
@@ -39,14 +39,14 @@ COM_ARCH_LIST:= $(subst $() $(),$(comma),$(ARCH_LIST))
 
 $(ARCH_LIST): $(DOCKERFILE)
 	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(TAG) -t $(IMAGE_NAME):latest \
-	--build-arg BUILD_DATE=$(DATE_FULL) --build-arg DOCKER_IMAGE=$(BASE_IMAGE) \
+	-t $(IMAGE_NAME):$(CROSSTOOL_VERSION) --build-arg BUILD_DATE=$(DATE_FULL) --build-arg DOCKER_IMAGE=$(BASE_IMAGE) \
 	--build-arg CT_VERSION_GIT=$(CROSSTOOL_VERSION) --platform $@ \
 	--build-arg VERSION=$(VERSION) --progress=plain --load
 
 	
 all: $(DOCKERFILE)
 	$(DOCKER) buildx build . -f $(DOCKERFILE) -t $(IMAGE_NAME):$(TAG) -t $(IMAGE_NAME):latest \
-	--build-arg BUILD_DATE=$(DATE_FULL) --build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $(COM_ARCH_LIST) \
+	-t $(IMAGE_NAME):$(CROSSTOOL_VERSION)  --build-arg BUILD_DATE=$(DATE_FULL) --build-arg DOCKER_IMAGE=$(BASE_IMAGE) --platform $(COM_ARCH_LIST) \
 	--build-arg VERSION=$(VERSION) --build-arg CT_VERSION_GIT=$(CROSSTOOL_VERSION) --progress=plain --push
 
 push: all
