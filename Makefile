@@ -20,7 +20,7 @@
 #//  CPU: ALL                                                //
 #//                                                          //
 #//////////////////////////////////////////////////////////////
-BASE_IMAGE := debian:sid-slim
+BASE_IMAGE := debian:unstable-slim
 IMAGE_NAME := bensuperpc/crosstool-ng
 DOCKERFILE := Dockerfile
 CROSSTOOL_VERSION := master
