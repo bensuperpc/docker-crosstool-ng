@@ -1,8 +1,5 @@
 ARG DOCKER_IMAGE=ubuntu:20.04
 ARG CT_VERSION_GIT=master
-
-ARG DEBIAN_FRONTEND=noninteractive
-
 FROM $DOCKER_IMAGE
 
 ARG VERSION="1.0.0"
@@ -10,6 +7,8 @@ ENV VERSION=$VERSION
 
 LABEL author="Bensuperpc <bensuperpc@gmail.com>"
 LABEL mantainer="Bensuperpc <bensuperpc@gmail.com>"
+
+ENV DEBIAN_FRONTEND=noninteractive 
 
 RUN apt-get update && apt-get -y install \
 	build-essential \
