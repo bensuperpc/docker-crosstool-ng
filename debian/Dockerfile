@@ -1,6 +1,8 @@
 ARG DOCKER_IMAGE=debian:bullseye-slim
 ARG CT_VERSION_GIT=master
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 FROM $DOCKER_IMAGE
 
 ARG VERSION="1.0.0"
